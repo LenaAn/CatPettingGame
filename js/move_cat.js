@@ -3,6 +3,7 @@ function catIsGone() {
 }
 
 const cat = document.getElementById('myCat');
+const score = document.getElementById('score');
 var clickCount = 0;
 
 const changePositionHandler = () => {
@@ -18,8 +19,7 @@ const resetTimerHandler = () => {
 }
 
 const increaseCountHandler = () => {
-	clickCount += 1;
-	console.log("clickCount = " + clickCount);
+	score.innerText = parseInt(score.innerText) + 1;
 }
 
 
