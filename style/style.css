@@ -1,8 +1,8 @@
 .tile {
   background: red url(file:../img/cat.jpg);
-  width: 100px;
-  height: 100px;
+  width: 5%;
+  height: 5%;
   position: absolute;
-  left: 100px;
-  top: 100px;
+  left: 50%;
+  top: 50%;
 }
