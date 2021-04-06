@@ -3,6 +3,7 @@ function catIsGone() {
 }
 
 const cat = document.getElementById('myCat');
+var clickCount = 0;
 
 const changePositionHandler = () => {
 	cat.style.position = "absolute";
@@ -16,7 +17,13 @@ const resetTimerHandler = () => {
 	timeoutHandle = window.setTimeout(catIsGone, 1000);
 }
 
+const increaseCountHandler = () => {
+	clickCount += 1;
+	console.log("clickCount = " + clickCount);
+}
+
 
 timeoutHandle = window.setTimeout(catIsGone, 1000);
 cat.addEventListener('click', changePositionHandler);
 cat.addEventListener('click', resetTimerHandler);
+cat.addEventListener('click', increaseCountHandler);
