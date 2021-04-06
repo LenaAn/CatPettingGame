@@ -8,8 +8,8 @@ var clickCount = 0;
 const changePositionHandler = () => {
 	cat.style.position = "absolute";
 	// TODO: account for cat size when calculating position
-	cat.style.left =  Math.random() * 95 + "%";
-	cat.style.top =  Math.random() * 95 + "%";
+	cat.style.left =  Math.random() * 80 + "%";
+	cat.style.top =  Math.random() * 80 + "%";
 }
 
 const resetTimerHandler = () => {
