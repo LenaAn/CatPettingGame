@@ -1,11 +1,10 @@
 import './App.css'
+import Score from "./Score.jsx";
 
 function App() {
 
   return (
-    <div>
-        You gonna pet the cat!!
-    </div>
+      <Score/>
   )
 }
 
