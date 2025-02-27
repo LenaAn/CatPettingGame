@@ -1,13 +1,3 @@
-.tile {
-  background: url(file:/assets/flatcat.png);
-  width: 200px;
-  height: 286px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-}
-
-
 .scoreBox {
   background: red;
   float: left;
