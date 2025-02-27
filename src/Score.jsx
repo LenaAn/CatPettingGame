@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
-function Score() {
-    const [score, setScore] = useState(0)
-
+function Score({ score }) {
     return (
         <div id="score" className="scoreBox">
             {score}
