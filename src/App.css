@@ -50,3 +50,38 @@
 .restart-button:hover {
     background-color: #ff6666;
 }
+
+.instructions {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    width: 300px;
+    z-index: 1000;
+}
+
+.start-button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.start-button:hover {
+    background-color: #ff6666;
+}
+
+.press-key {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
