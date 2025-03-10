@@ -1,0 +1,28 @@
+.time-bar-container {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25%;
+    height: 20px;
+    background-color: #ddd;
+    z-index: 1000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.time-bar-fill {
+    height: 100%;
+    background-color: #ff4444;
+    /* Only transition when width is decreasing */
+    transition: width 0.1s linear;
+    transform-origin: left;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    will-change: width;
+}
+
+/* Add a class for initial state */
+.time-bar-fill.initial {
+    transition: none;
+} 

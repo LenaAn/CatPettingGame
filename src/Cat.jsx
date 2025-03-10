@@ -2,6 +2,7 @@ import flatcat from './flatcat.png'
 import autoBindReact from 'auto-bind/react'
 import React from "react";
 import './Cat.css'
+import TimeBar from './TimeBar';
 
 class Cat extends React.Component {
     constructor(props) {
@@ -10,9 +11,11 @@ class Cat extends React.Component {
             left: 50,  // Initial position
             top: 50,
             isVisible: true,
-            message: ''
+            message: '',
+            timeProgress: 100  // Add new state for progress
         };
         this.timer = null;
+        this.progressInterval = null;  // Add new timer for progress
         this.baseWaitTime = 3000; // 3 seconds base time
         autoBindReact(this);
     }
@@ -20,6 +23,9 @@ class Cat extends React.Component {
     componentWillUnmount() {
         if (this.timer) {
             clearTimeout(this.timer);
+        }
+        if (this.progressInterval) {
+            clearInterval(this.progressInterval);
         }
     }
 
@@ -35,19 +41,36 @@ class Cat extends React.Component {
         if (this.timer) {
             clearTimeout(this.timer);
         }
+        if (this.progressInterval) {
+            clearInterval(this.progressInterval);
+        }
         
         const waitTime = this.getWaitTime();
         
+        this.setState({ timeProgress: 100 }, () => {
+            const startTime = Date.now();
+
+            this.progressInterval = setInterval(() => {
+                const elapsedTime = Date.now() - startTime;
+                const remainingPercent = Math.min(100, Math.max(0, 
+                    100 * (1 - (elapsedTime / waitTime))
+                ));
+                
+                this.setState({ timeProgress: remainingPercent });
+            }, 16);
+        });
+
         this.timer = setTimeout(() => {
+            clearInterval(this.progressInterval);
             this.setState({
                 isVisible: false,
-                message: 'Your cat is gone!'
+                message: 'Your cat is gone!',
+                timeProgress: 0
             });
         }, waitTime);
     }
 
     handleClick() {
-        // Generate random position between 10% and 90% of the screen
         const newLeft = Math.random() * 80 + 10;
         const newTop = Math.random() * 80 + 10;
         
@@ -55,12 +78,12 @@ class Cat extends React.Component {
             left: newLeft,
             top: newTop,
             isVisible: true,
-            message: ''
+            message: '',
+            timeProgress: 100
+        }, () => {
+            this.startDisappearTimer();
         });
 
-        this.startDisappearTimer();
-        
-        // Call the parent's click handler to increment score
         if (this.props.onCatClick) {
             this.props.onCatClick();
         }
@@ -69,6 +92,7 @@ class Cat extends React.Component {
     render() {
         return (
             <>
+                <TimeBar progress={this.state.timeProgress} />
                 {this.state.isVisible ? (
                     <div 
                         id="myCat" 
