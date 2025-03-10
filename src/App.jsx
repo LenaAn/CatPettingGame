@@ -13,7 +13,7 @@ function App() {
   return (
       <>
           <Score score={score}/>
-          <Cat onCatClick={handleCatClick}/>
+          <Cat onCatClick={handleCatClick} score={score}/>
       </>
   )
 }

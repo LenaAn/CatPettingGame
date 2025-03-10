@@ -13,6 +13,7 @@ class Cat extends React.Component {
             message: ''
         };
         this.timer = null;
+        this.baseWaitTime = 3000; // 3 seconds base time
         autoBindReact(this);
     }
 
@@ -22,17 +23,27 @@ class Cat extends React.Component {
         }
     }
 
+    getWaitTime() {
+        const clickGroup = Math.floor(this.props.score / 5);
+        if (clickGroup === 0) return this.baseWaitTime;
+        
+        // Decrease by 1.5x for each group of 5 clicks after first 5
+        return this.baseWaitTime / Math.pow(1.5, clickGroup);
+    }
+
     startDisappearTimer() {
         if (this.timer) {
             clearTimeout(this.timer);
         }
+        
+        const waitTime = this.getWaitTime();
         
         this.timer = setTimeout(() => {
             this.setState({
                 isVisible: false,
                 message: 'Your cat is gone!'
             });
-        }, 3000);
+        }, waitTime);
     }
 
     handleClick() {
