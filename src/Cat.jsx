@@ -67,6 +67,10 @@ class Cat extends React.Component {
                 message: 'Your cat is gone!',
                 timeProgress: 0
             });
+            // Trigger game over
+            if (this.props.onGameOver) {
+                this.props.onGameOver();
+            }
         }, waitTime);
     }
 
