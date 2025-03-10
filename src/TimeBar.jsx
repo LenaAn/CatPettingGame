@@ -15,13 +15,22 @@ function TimeBar({ progress }) {
         }
     }, [progress]);
 
+    const getBarColor = () => {
+        if (progress > 70) return '#2D952E';  // green
+        if (progress > 30) return '#FFD700';  // yellow
+        return 'red';
+    };
+
     const width = Math.round(progress);
     
     return (
         <div className="time-bar-container">
             <div 
                 className={`time-bar-fill ${isInitial ? 'initial' : ''}`}
-                style={{ width: `${width}%` }}
+                style={{ 
+                    width: `${width}%`,
+                    backgroundColor: getBarColor()
+                }}
             />
         </div>
     );
